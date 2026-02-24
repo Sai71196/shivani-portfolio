@@ -1,78 +1,322 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>Dr. Sai Shivani Parimi</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Sai Shivani Parimi | Portfolio</title>
+  <meta name="description" content="Clinical Informatics • Health Data Analytics • Clinical Research | SQL • Python • Power BI • EHR"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #0f172a;
-      color: white;
-      text-align: center;
+    :root{
+      --bg:#070a12;
+      --panel:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.14);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.68);
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius:18px;
+      --max:1100px;
+      --a:#6ee7ff;
+      --b:#a78bfa;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(900px 600px at 10% 10%, rgba(110,231,255,.16), transparent 60%),
+        radial-gradient(900px 600px at 90% 0%, rgba(167,139,250,.18), transparent 55%),
+        linear-gradient(180deg, #050813, var(--bg) 35%, #050813);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:var(--text); text-decoration:none}
+    a:hover{opacity:.9}
+    .container{max-width:var(--max); margin:0 auto; padding:24px}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,18,.65);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      max-width:var(--max); margin:0 auto; padding:14px 24px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .brand{font-weight:800; letter-spacing:.3px}
+    .links{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+    .btn{
+      border:1px solid var(--line);
+      padding:10px 14px;
+      border-radius:999px;
+      display:inline-flex; align-items:center; gap:10px;
+      background: rgba(255,255,255,.04);
+    }
+    .btn.solid{
+      border:none;
+      background: linear-gradient(90deg, rgba(110,231,255,.95), rgba(167,139,250,.95));
+      color:#08101a;
+      font-weight:800;
     }
 
-    .container {
-      padding: 60px 20px;
+    /* HERO */
+    header{padding:46px 0 18px}
+    .hero{
+      display:grid; grid-template-columns:1.25fr .75fr; gap:18px; align-items:start;
+    }
+    .badge{
+      display:inline-block; padding:8px 12px; border-radius:999px;
+      border:1px solid var(--line); background:rgba(255,255,255,.04);
+      color:var(--muted); margin-bottom:12px;
+    }
+    h1{margin:0 0 8px; font-size:clamp(32px, 5vw, 52px); line-height:1.08}
+    .subtitle{margin:0 0 16px; color:var(--muted)}
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin:16px 0}
+    .panel{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .panel h3{margin:0 0 10px}
+    .quick{margin:0; padding-left:18px; color:var(--muted)}
+
+    /* SECTIONS */
+    section{padding:54px 0}
+    .alt{
+      background: rgba(255,255,255,.03);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    h2{margin:0 0 10px; font-size:26px}
+    .lead{color:var(--muted); max-width:78ch}
+    .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .chip{
+      padding:9px 12px; border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      font-size:14px;
     }
 
-    h1 {
-      font-size: 40px;
-    }
+    /* CARDS */
+    .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin-top:16px}
+    .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .card h3{margin:0 0 8px}
+    .card p{margin:8px 0; color:var(--muted)}
+    .meta{font-size:13px}
+    .cardlinks{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
+    .pill{border:1px solid var(--line); padding:8px 10px; border-radius:999px; background:rgba(255,255,255,.04); font-size:13px}
 
-    h2 {
-      color: #38bdf8;
+    /* TIMELINE */
+    .timeline{display:flex; flex-direction:column; gap:16px; margin-top:14px}
+    .item{
+      display:grid; grid-template-columns:170px 1fr; gap:16px;
+      padding:16px; border:1px solid var(--line);
+      border-radius:var(--radius); background:rgba(255,255,255,.04);
     }
+    .when{color:var(--muted); font-weight:600}
 
-    .card {
-      background: #1e293b;
-      margin: 20px auto;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 600px;
-    }
+    /* FOOTER */
+    footer{border-top:1px solid var(--line); padding:18px 0; background:rgba(0,0,0,.15)}
+    .footer-inner{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap}
+    .muted{color:var(--muted)}
 
-    a {
-      color: #38bdf8;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .item{grid-template-columns:1fr}
+      .links{gap:10px}
     }
   </style>
 </head>
 
 <body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">Shivani</a>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact" class="btn">Contact</a>
+        <a class="btn solid" href="#projects">View Work</a>
+      </div>
+    </div>
+  </nav>
 
-<div class="container">
-  <h1>Dr. Sai Shivani Parimi</h1>
-  <h2>Clinical Informatics | Health Data Analytics</h2>
+  <header id="top">
+    <div class="container hero">
+      <div>
+        <span class="badge">Open to Clinical Informatics • Health Data Analytics • Clinical Research</span>
+        <h1>Dr. Sai Shivani Parimi</h1>
+        <p class="subtitle">
+          Clinical Informatics • MS Health Informatics (UNT) • SQL • Python • Power BI • EHR
+        </p>
 
-  <div class="card">
-    <h3>About Me</h3>
-    <p>
-      MS Health Informatics student at UNT with a background in Dentistry.
-      Experience in SQL, Python, Power BI, EHR documentation, and workflow optimization.
-    </p>
-  </div>
+        <div class="cta">
+          <a class="btn solid" href="#projects">See Projects</a>
+          <a class="btn" href="#contact">Contact</a>
+          <a class="btn" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/dr-sai-shivani-parimi">LinkedIn</a>
+          <a class="btn" href="mailto:shivanisai62@gmail.com">Email</a>
+        </div>
 
-  <div class="card">
-    <h3>Skills</h3>
-    <p>SQL | Python | Power BI | EHR | Clinical Documentation | Data Cleaning</p>
-  </div>
+        <p class="lead">
+          I combine clinical background (Dentistry) with health informatics and analytics to improve documentation quality,
+          data reliability, and care workflows. Interested in interoperability and AI-assisted decision support.
+        </p>
+      </div>
 
-  <div class="card">
-    <h3>Contact</h3>
-    <p>Email: shivanisai62@gmail.com</p>
-    <p>
-      LinkedIn:
-      <a href="https://www.linkedin.com/in/dr-sai-shivani-parimi" target="_blank">
-        View Profile
-      </a>
-    </p>
-  </div>
-</div>
+      <aside class="panel">
+        <h3>Quick Highlights</h3>
+        <ul class="quick">
+          <li><strong>Tools:</strong> SQL, Python, Power BI</li>
+          <li><strong>Strengths:</strong> data cleaning, validation, dashboards</li>
+          <li><strong>Clinical:</strong> patient documentation + triage experience</li>
+          <li><strong>Next:</strong> projects + research aligned to PhD goals</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
 
+  <main>
+    <section id="about">
+      <div class="container">
+        <h2>About</h2>
+        <p class="lead">
+          MS Health Informatics student at the University of North Texas with a dentistry background and clinical experience.
+          I work on healthcare datasets and EHR documentation workflows using SQL, Python, and Power BI, with interest in
+          interoperability and AI in healthcare.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills" class="alt">
+      <div class="container">
+        <h2>Skills</h2>
+        <div class="chips">
+          <span class="chip">SQL</span>
+          <span class="chip">Python</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">EHR / EMR</span>
+          <span class="chip">Clinical Documentation</span>
+          <span class="chip">Data Cleaning</span>
+          <span class="chip">Data Validation</span>
+          <span class="chip">Workflow Optimization</span>
+          <span class="chip">Research & Literature Review</span>
+          <span class="chip">HL7 FHIR (Exposure)</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2>Projects</h2>
+        <p class="muted">Replace the “Add link” buttons with your GitHub / Google Drive / LinkedIn post links.</p>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Dental Informatics Taxonomy (Research)</h3>
+            <p>Organized and validated dental concepts to support structured concept mapping and downstream analytics.</p>
+            <p class="meta">Focus: clinical concepts • taxonomy/ontology thinking • documentation structure</p>
+            <div class="cardlinks">
+              <a class="pill" href="#" onclick="return false;">Add link</a>
+              <a class="pill" href="#" onclick="return false;">Add PDF</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Documentation KPI Dashboard</h3>
+            <p>Designed a dashboard to track documentation completeness, utilization metrics, and workflow indicators.</p>
+            <p class="meta">Tools: Power BI • data modeling • KPI design</p>
+            <div class="cardlinks">
+              <a class="pill" href="#" onclick="return false;">Add link</a>
+              <a class="pill" href="#" onclick="return false;">Add screenshots</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>SQL + Python Data Quality Checks</h3>
+            <p>Built reusable validation checks for missingness, duplicates, ranges, and consistency in clinical datasets.</p>
+            <p class="meta">Tools: SQL • Python • rules-based validation</p>
+            <div class="cardlinks">
+              <a class="pill" href="#" onclick="return false;">Add GitHub</a>
+              <a class="pill" href="#" onclick="return false;">Add notebook</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="alt">
+      <div class="container">
+        <h2>Experience</h2>
+
+        <div class="timeline">
+          <div class="item">
+            <div class="when">2026 – Present</div>
+            <div>
+              <h3>Clinical Informatics Analyst — GTechnologies</h3>
+              <ul class="quick">
+                <li>Analyze clinical/operational datasets using SQL and Python to support workflow improvement.</li>
+                <li>Build Power BI dashboards for KPIs and documentation monitoring.</li>
+                <li>Perform data cleaning, validation, and structured documentation quality checks.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="when">UNT</div>
+            <div>
+              <h3>Graduate Research Assistant (Volunteer) — University of North Texas</h3>
+              <ul class="quick">
+                <li>Supported research work related to dental informatics and concept organization.</li>
+                <li>Conducted literature review and structured summaries to support research outputs.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="when">COVID Duty</div>
+            <div>
+              <h3>General Duty Medical Officer — Government of Andhra Pradesh</h3>
+              <ul class="quick">
+                <li>Performed triage and supported structured documentation during COVID-19 duties.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2>Contact</h2>
+        <p class="lead">Best way to reach me:</p>
+        <div class="chips">
+          <a class="chip" href="mailto:shivanisai62@gmail.com">Email: shivanisai62@gmail.com</a>
+          <a class="chip" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/dr-sai-shivani-parimi">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <small>© <span id="year"></span> Dr. Sai Shivani Parimi</small>
+      <small class="muted">Hosted on GitHub Pages</small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
