@@ -11,124 +11,170 @@
 
   <style>
     :root{
-      --bg:#070a12;
-      --panel:rgba(255,255,255,.06);
-      --line:rgba(255,255,255,.14);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.68);
-      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --bg1:#f8fafc;
+      --bg2:#eef2ff;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:#e5e7eb;
+      --accent:#2563eb;   /* blue */
+      --accent2:#14b8a6;  /* teal */
+      --shadow: 0 18px 55px rgba(15,23,42,.10);
       --radius:18px;
       --max:1100px;
-      --a:#6ee7ff;
-      --b:#a78bfa;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        radial-gradient(900px 600px at 10% 10%, rgba(110,231,255,.16), transparent 60%),
-        radial-gradient(900px 600px at 90% 0%, rgba(167,139,250,.18), transparent 55%),
-        linear-gradient(180deg, #050813, var(--bg) 35%, #050813);
+        radial-gradient(800px 500px at 12% 12%, rgba(37,99,235,.10), transparent 60%),
+        radial-gradient(800px 500px at 88% 0%, rgba(20,184,166,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
       color:var(--text);
       line-height:1.6;
     }
-    a{color:var(--text); text-decoration:none}
+    a{color:inherit; text-decoration:none}
     a:hover{opacity:.9}
     .container{max-width:var(--max); margin:0 auto; padding:24px}
 
     /* NAV */
     .nav{
       position:sticky; top:0; z-index:50;
+      background: rgba(248,250,252,.78);
       backdrop-filter: blur(10px);
-      background: rgba(7,10,18,.65);
       border-bottom:1px solid var(--line);
     }
     .nav-inner{
       max-width:var(--max); margin:0 auto; padding:14px 24px;
-      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
     }
-    .brand{font-weight:800; letter-spacing:.3px}
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .brand-dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 20px rgba(37,99,235,.15);
+    }
     .links{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+    .links a{color:var(--muted); font-weight:600}
+    .links a:hover{color:var(--text)}
     .btn{
       border:1px solid var(--line);
       padding:10px 14px;
       border-radius:999px;
       display:inline-flex; align-items:center; gap:10px;
-      background: rgba(255,255,255,.04);
+      background: #ffffff;
+      color:var(--text);
+      font-weight:700;
     }
     .btn.solid{
       border:none;
-      background: linear-gradient(90deg, rgba(110,231,255,.95), rgba(167,139,250,.95));
-      color:#08101a;
-      font-weight:800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#ffffff;
+      box-shadow: 0 14px 35px rgba(37,99,235,.18);
     }
 
     /* HERO */
-    header{padding:46px 0 18px}
+    header{padding:36px 0 14px}
     .hero{
-      display:grid; grid-template-columns:1.25fr .75fr; gap:18px; align-items:start;
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:18px; align-items:start;
     }
     .badge{
-      display:inline-block; padding:8px 12px; border-radius:999px;
-      border:1px solid var(--line); background:rgba(255,255,255,.04);
-      color:var(--muted); margin-bottom:12px;
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid var(--line); background: rgba(255,255,255,.8);
+      color:var(--muted); font-weight:600;
     }
-    h1{margin:0 0 8px; font-size:clamp(32px, 5vw, 52px); line-height:1.08}
-    .subtitle{margin:0 0 16px; color:var(--muted)}
-    .cta{display:flex; gap:10px; flex-wrap:wrap; margin:16px 0}
-    .panel{
-      background:var(--panel);
+    .badge i{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--accent2);
+      display:inline-block;
+    }
+    h1{margin:12px 0 10px; font-size:clamp(30px, 4.6vw, 46px); line-height:1.12}
+    .subtitle{margin:0 0 14px; color:var(--muted)}
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0}
+    .lead{color:var(--muted); max-width:78ch; margin:10px 0 0}
+
+    .card{
+      background:var(--card);
       border:1px solid var(--line);
       border-radius:var(--radius);
       padding:18px;
       box-shadow:var(--shadow);
     }
-    .panel h3{margin:0 0 10px}
-    .quick{margin:0; padding-left:18px; color:var(--muted)}
+    .profile{
+      display:flex; align-items:center; gap:14px;
+      margin-bottom:12px;
+    }
+    .profile img{
+      width:92px; height:92px; border-radius:50%;
+      object-fit:cover;
+      border:2px solid rgba(37,99,235,.25);
+    }
+    .profile .name{font-weight:800}
+    .profile .role{color:var(--muted); font-weight:600; margin-top:2px}
+    .quick{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    .quick li{margin:6px 0}
 
     /* SECTIONS */
-    section{padding:54px 0}
-    .alt{
-      background: rgba(255,255,255,.03);
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-    }
-    h2{margin:0 0 10px; font-size:26px}
-    .lead{color:var(--muted); max-width:78ch}
+    section{padding:46px 0}
+    .section-head{display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap}
+    h2{margin:0 0 10px; font-size:24px}
+    .muted{color:var(--muted)}
+
     .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
     .chip{
       padding:9px 12px; border-radius:999px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
+      background:#ffffff;
+      color:var(--muted);
+      font-weight:700;
       font-size:14px;
     }
 
-    /* CARDS */
-    .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin-top:16px}
-    .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
-    .card h3{margin:0 0 8px}
-    .card p{margin:8px 0; color:var(--muted)}
-    .meta{font-size:13px}
-    .cardlinks{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
-    .pill{border:1px solid var(--line); padding:8px 10px; border-radius:999px; background:rgba(255,255,255,.04); font-size:13px}
-
-    /* TIMELINE */
-    .timeline{display:flex; flex-direction:column; gap:16px; margin-top:14px}
-    .item{
-      display:grid; grid-template-columns:170px 1fr; gap:16px;
-      padding:16px; border:1px solid var(--line);
-      border-radius:var(--radius); background:rgba(255,255,255,.04);
+    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:16px}
+    .project h3{margin:0 0 8px}
+    .project p{margin:8px 0; color:var(--muted)}
+    .meta{font-size:13px; color:var(--muted)}
+    .pillrow{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
+    .pill{
+      border:1px solid var(--line);
+      background:#ffffff;
+      padding:8px 10px;
+      border-radius:999px;
+      font-weight:700;
+      color:var(--muted);
+      font-size:13px;
     }
-    .when{color:var(--muted); font-weight:600}
+
+    /* EXPERIENCE */
+    .timeline{display:flex; flex-direction:column; gap:14px; margin-top:14px}
+    .item{
+      display:grid; grid-template-columns: 170px 1fr; gap:16px;
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background: rgba(255,255,255,.9);
+      box-shadow: var(--shadow);
+    }
+    .when{color:var(--muted); font-weight:800}
+    .item h3{margin:0 0 8px}
+    .item ul{margin:0; padding-left:18px; color:var(--muted)}
+    .item li{margin:6px 0}
 
     /* FOOTER */
-    footer{border-top:1px solid var(--line); padding:18px 0; background:rgba(0,0,0,.15)}
-    .footer-inner{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap}
-    .muted{color:var(--muted)}
+    footer{
+      border-top:1px solid var(--line);
+      background: rgba(255,255,255,.8);
+      padding:18px 0;
+    }
+    .footer-inner{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; color:var(--muted); font-weight:600}
 
-    @media (max-width: 900px){
+    @media (max-width: 920px){
       .hero{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
       .item{grid-template-columns:1fr}
@@ -140,14 +186,14 @@
 <body>
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="#top">Shivani</a>
+      <a class="brand" href="#top"><span class="brand-dot"></span>Shivani</a>
       <div class="links">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
-        <a href="#contact" class="btn">Contact</a>
-        <a class="btn solid" href="#projects">View Work</a>
+        <a class="btn" href="#contact">Contact</a>
+        <a class="btn solid" href="Profile.pdf" target="_blank">Resume</a>
       </div>
     </div>
   </nav>
@@ -155,18 +201,16 @@
   <header id="top">
     <div class="container hero">
       <div>
-        <span class="badge">Open to Clinical Informatics • Health Data Analytics • Clinical Research</span>
-        <img src="./Shivu_pic.jpg" alt="Shivani" style="width:170px;height:170px;border-radius:50%;object-fit:cover;border:4px solid #6ee7ff;margin:0 0 14px 0;display:block;">
+        <span class="badge"><i></i> Open to Clinical Informatics • Health Data Analytics • Clinical Research</span>
         <h1>Dr. Sai Shivani Parimi</h1>
         <p class="subtitle">
           Clinical Informatics • MS Health Informatics (UNT) • SQL • Python • Power BI • EHR
         </p>
 
         <div class="cta">
-          <a class="btn solid" href="#projects">See Projects</a>
-          <a class="btn" href="#contact">Contact</a>
+          <a class="btn solid" href="#projects">View Projects</a>
+          <a class="btn" href="mailto:shivanisai62@gmail.com">Email</a>
           <a class="btn" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/dr-sai-shivani-parimi">LinkedIn</a>
-          <a class="btn" href="mailto:saishivaniparimi07@gmail.com">Email</a>
           <a class="btn" href="Profile.pdf" target="_blank">Download Resume</a>
         </div>
 
@@ -176,13 +220,20 @@
         </p>
       </div>
 
-      <aside class="panel">
-        <h3>Quick Highlights</h3>
+      <aside class="card">
+        <div class="profile">
+          <!-- CHANGE THIS if your image filename is different -->
+          <img src="Shivu_pic.jpg" alt="Shivani profile photo">
+          <div>
+            <div class="name">Dr. Sai Shivani Parimi</div>
+            <div class="role">Health Informatics • Clinical Analytics</div>
+          </div>
+        </div>
         <ul class="quick">
           <li><strong>Tools:</strong> SQL, Python, Power BI</li>
           <li><strong>Strengths:</strong> data cleaning, validation, dashboards</li>
-          <li><strong>Clinical:</strong> patient documentation + triage experience</li>
-          <li><strong>Next:</strong> projects + research aligned to PhD goals</li>
+          <li><strong>Clinical:</strong> documentation + triage experience</li>
+          <li><strong>Next:</strong> projects aligned to PhD/research goals</li>
         </ul>
       </aside>
     </div>
@@ -200,9 +251,12 @@
       </div>
     </section>
 
-    <section id="skills" class="alt">
+    <section id="skills">
       <div class="container">
-        <h2>Skills</h2>
+        <div class="section-head">
+          <h2>Skills</h2>
+          <p class="muted">A focused set of skills for clinical informatics and analytics roles.</p>
+        </div>
         <div class="chips">
           <span class="chip">SQL</span>
           <span class="chip">Python</span>
@@ -220,35 +274,37 @@
 
     <section id="projects">
       <div class="container">
-        <h2>Projects</h2>
-        <p class="muted">Replace the “Add link” buttons with your GitHub / Google Drive / LinkedIn post links.</p>
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p class="muted">Replace the “Add link” buttons with your GitHub / Drive / LinkedIn post links.</p>
+        </div>
 
         <div class="grid">
-          <article class="card">
+          <article class="card project">
             <h3>Dental Informatics Taxonomy (Research)</h3>
             <p>Organized and validated dental concepts to support structured concept mapping and downstream analytics.</p>
-            <p class="meta">Focus: clinical concepts • taxonomy/ontology thinking • documentation structure</p>
-            <div class="cardlinks">
+            <p class="meta">Focus: clinical concepts • taxonomy/ontology • documentation structure</p>
+            <div class="pillrow">
               <a class="pill" href="#" onclick="return false;">Add link</a>
               <a class="pill" href="#" onclick="return false;">Add PDF</a>
             </div>
           </article>
 
-          <article class="card">
+          <article class="card project">
             <h3>Documentation KPI Dashboard</h3>
-            <p>Designed a dashboard to track documentation completeness, utilization metrics, and workflow indicators.</p>
+            <p>Designed a dashboard to monitor documentation completeness, utilization metrics, and workflow indicators.</p>
             <p class="meta">Tools: Power BI • data modeling • KPI design</p>
-            <div class="cardlinks">
+            <div class="pillrow">
               <a class="pill" href="#" onclick="return false;">Add link</a>
               <a class="pill" href="#" onclick="return false;">Add screenshots</a>
             </div>
           </article>
 
-          <article class="card">
+          <article class="card project">
             <h3>SQL + Python Data Quality Checks</h3>
-            <p>Built reusable validation checks for missingness, duplicates, ranges, and consistency in clinical datasets.</p>
+            <p>Built reusable validation checks for missingness, duplicates, ranges, and consistency in structured datasets.</p>
             <p class="meta">Tools: SQL • Python • rules-based validation</p>
-            <div class="cardlinks">
+            <div class="pillrow">
               <a class="pill" href="#" onclick="return false;">Add GitHub</a>
               <a class="pill" href="#" onclick="return false;">Add notebook</a>
             </div>
@@ -257,7 +313,7 @@
       </div>
     </section>
 
-    <section id="experience" class="alt">
+    <section id="experience">
       <div class="container">
         <h2>Experience</h2>
 
@@ -266,8 +322,8 @@
             <div class="when">2026 – Present</div>
             <div>
               <h3>Clinical Informatics Analyst — GTechnologies</h3>
-              <ul class="quick">
-                <li>Analyze clinical/operational datasets using SQL and Python to support workflow improvement.</li>
+              <ul>
+                <li>Analyze datasets using SQL and Python to support workflow improvement and reporting.</li>
                 <li>Build Power BI dashboards for KPIs and documentation monitoring.</li>
                 <li>Perform data cleaning, validation, and structured documentation quality checks.</li>
               </ul>
@@ -278,8 +334,8 @@
             <div class="when">UNT</div>
             <div>
               <h3>Graduate Research Assistant (Volunteer) — University of North Texas</h3>
-              <ul class="quick">
-                <li>Supported research work related to dental informatics and concept organization.</li>
+              <ul>
+                <li>Supported dental informatics research and clinical concept organization.</li>
                 <li>Conducted literature review and structured summaries to support research outputs.</li>
               </ul>
             </div>
@@ -289,7 +345,7 @@
             <div class="when">COVID Duty</div>
             <div>
               <h3>General Duty Medical Officer — Government of Andhra Pradesh</h3>
-              <ul class="quick">
+              <ul>
                 <li>Performed triage and supported structured documentation during COVID-19 duties.</li>
               </ul>
             </div>
@@ -305,6 +361,7 @@
         <div class="chips">
           <a class="chip" href="mailto:shivanisai62@gmail.com">Email: shivanisai62@gmail.com</a>
           <a class="chip" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/dr-sai-shivani-parimi">LinkedIn</a>
+          <a class="chip" href="Profile.pdf" target="_blank">Resume (PDF)</a>
         </div>
       </div>
     </section>
@@ -312,8 +369,8 @@
 
   <footer>
     <div class="container footer-inner">
-      <small>© <span id="year"></span> Dr. Sai Shivani Parimi</small>
-      <small class="muted">Hosted on GitHub Pages</small>
+      <span>© <span id="year"></span> Dr. Sai Shivani Parimi</span>
+      <span>Hosted on GitHub Pages</span>
     </div>
   </footer>
 
